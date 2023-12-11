@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>*</pattern>
+    <template>I have no answer for that.</template>
+  </category>
+  
+  <category>
+      <pattern>I am *</pattern>
+      <template>
+         Hello <set name = "username"> <star/>! </set>
+          I am Doremi, nice to meet you
+      </template>
+   </category>  
+   
+   <category>
+      <pattern><set>greeting</set></pattern>
+      <template>
+         Hi <get name = "username"/> 
+         How can I help you today?
+      </template>  
+   </category>
+   
+   <category>
+      <pattern>LETS DISCUSS MUSIC</pattern>
+      <template>
+          <think><set name ="topic">music</set></think>
+          Yes, lets discuss music
+      </template>
+  </category>
+  
+  <topic name = "music">
+      <category>
+          <pattern># I # <set>opinion</set> # LISTENING TO # <set>genre</set></pattern>
+          <template><map name="genre"><star index="6"/></map></template>
+      </category>
+  </topic>
+ 
+  <category>
+      <pattern># HOW DOES # <set>genre</set> # MAKE YOU FEEL </pattern>
+      <template>
+         <think><set name = "state"> happy</set></think>
+         <condition name = "state" value = "happy">
+            It makes me happy!
+         </condition>
+         
+         <condition name = "state" value = "sad">
+            It makes me sad.
+         </condition>
+      </template>
+   </category>
+   
+     <category>
+      <pattern>WHAT ABOUT INSTRUMENTS</pattern>
+      <template>Do you like trompet music</template>  
+  </category>
+   
+  <category>
+      <pattern>YES</pattern>
+      <that>Do you like trompet music</that>
+      <template>
+          <random>
+              <li>Nice, i like it to</li>
+              <li>I think it is a very cool instrument</li>
+          </random>
+      </template>
+  </category>
+   
+  <category>
+      <pattern>NO</pattern>
+      <that>Do you like trompet music</that>
+      <template>
+          <random>
+              <li>ok! I do like trompet music</li>
+              <li>I think it is a very cool instrument</li>
+          </random>
+      </template>
+  </category> 
+  
+  <category>
+      <pattern># DO YOU # <set>opinion</set> # <set>stuffopinions</set></pattern>
+      <template><map name="stuffopinions"><star index="5"/></map></template>
+  </category>
+</aiml>
